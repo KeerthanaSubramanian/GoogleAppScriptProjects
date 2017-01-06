@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+
+<div class="divContainer">
+<script>
+function unCheck() {
+ var uncheck = document.getElementsByTagName('input');
+ for(var index = 0; index < uncheck.length; index++)
+ {
+  if(uncheck[index].type=='checkbox')
+  {
+   uncheck[index].checked=false;
+  }
+ }
+}
+</script>
+
+<? var data = getUniqueValues(); ?>
+<form id = "form" style="margin-top:9px;margin-left:5px;"  name = "form">
+<? if(Object.prototype.toString.call(data) === '[object Array]') { ?>
+<? for (var i = 0; i < data.length; i++) { ?>
+<? for (var j = 0; j < data[i].length; j++) { ?>
+<input type="checkbox" class="check_box" id="ch<?= '' + i + j ?>" name="ch<?= '' + i + j ?>" value="<?= data[i][j] ?>">
+<label for="ch<?= '' + i + j ?>"><?= data[i][j] ?></label><br>
+<? } ?>
+<? } ?>
+<? } else { ?>
+<p> Some problem Occured </p>
+<? } ?>
+<input type="button" value="Apply" class="blue" id="apply" style="margin:30px;display:inline-block;" onclick="google.script.run.hideRowsAndCalculateTotal(this.parentNode);" />
+<input type="button" value="Clear" class="blue" id="clear" style="margin:30px;display:inline-block;" onclick="google.script.run.clearFilters();unCheck();" />
+</form>
+</div>
